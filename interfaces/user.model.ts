@@ -12,9 +12,3 @@ export interface Profile {
   country: string;
 }
 
-export interface Feedback {
-  id: string,
-  text: string,
-  date: string,
-  author: string,
-}

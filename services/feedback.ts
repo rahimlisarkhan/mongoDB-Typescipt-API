@@ -1,5 +1,5 @@
 import { FeedDataType } from "../interfaces/request.model";
-import { Axios } from "../helper/axios"
+import { Axios } from "../helper/axios-util"
 
 export const getFeedBack = async () => {
     const response = await Axios.get('/feedback')
@@ -13,7 +13,5 @@ export const addFeedBack = async (data: FeedDataType) => {
 
 export const delFeedBack = async (id: any) => {
     const response = await Axios.delete('/feedback', { data: id })
-    console.log(response);
-
     return response;
 }

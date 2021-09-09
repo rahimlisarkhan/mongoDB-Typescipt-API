@@ -12,7 +12,7 @@ export function extractFeedback(filePath:string) {
   return data;
 }
 
-const handler = (req: NextApiRequest, res: NextApiResponse) => {
+const userAPI = (req: NextApiRequest, res: NextApiResponse) => {
   try {
     if (req.method === 'PUT') {
       let editData = {
@@ -23,8 +23,6 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
         country:req.body.country,
       }
 
-      console.log(editData);
-      
       const filePath = buildFeedbackPath();
       fs.writeFileSync(filePath, JSON.stringify(editData));
       res.status(201).json({ message: 'Success!', profile: editData });
@@ -41,4 +39,4 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-export default handler
+export default userAPI

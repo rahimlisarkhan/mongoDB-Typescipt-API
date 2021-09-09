@@ -7,7 +7,6 @@ export interface ResponseType<T>{
     data:T
 }
 
-
 export interface ProfileType {
     id: number,
     name:string,

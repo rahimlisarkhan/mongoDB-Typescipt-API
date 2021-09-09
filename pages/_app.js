@@ -1,9 +1,14 @@
 import Head from 'next/head'
 import { UserProvider } from '../providers/userProvider';
+import Layout from '../components/Layout'
+// import  {AppProps} from 'next/app'
 import '../sass/global.scss'
 import 'react-toastify/dist/ReactToastify.css';
-const App = ({ Component, pageProps }) => {
+import { ToastContainer } from 'react-toastify';
 
+
+const App = ({ Component, pageProps }) => {
+  
   return (
     <>
       <Head>
@@ -14,8 +19,11 @@ const App = ({ Component, pageProps }) => {
 
       </Head>
       <UserProvider>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </UserProvider>
+      <ToastContainer />
     </>
   )
 }

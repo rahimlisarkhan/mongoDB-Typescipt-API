@@ -1,8 +1,9 @@
 import React, { ReactNode } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
-import { ToastContainer } from 'react-toastify';
 import { userStore } from '../providers/userProvider';
+
+
 type Props = {
   children?: ReactNode
   title?: string
@@ -10,8 +11,6 @@ type Props = {
 
 const Layout = ({ children, title = 'This is the default title' }: Props) => {
   const { auth } = userStore()
-
-
 
   return (
     <div>
@@ -47,7 +46,6 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
         <hr />
         <span>I'm here to stay (Footer)</span>
       </footer>
-      <ToastContainer />
     </div>
   )
 

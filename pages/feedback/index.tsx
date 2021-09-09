@@ -1,43 +1,42 @@
 import { useEffect, useState } from "react"
-import FeedBackList from "../../components/Feedback/FeedBackList"
-import FeedBackShare from "../../components/Feedback/FeedbackShare"
-import Layout from "../../components/Layout"
-import { Feedback } from "../../interfaces"
 import { getFeedBack } from "../../services/feedback"
-import { getProfileInfo } from "../../services/profile"
+import dynamic from 'next/dynamic'
 
-const FeedbackPage = (props) => {
+//child components
+const FeedBackList = dynamic(() => import('../../components/Feedback/FeedBackList'))
+const FeedBackShare = dynamic(() => import('../../components/Feedback/FeedbackShare'))
 
-    const [feeds,setFeeds] = useState<Feedback[] | null>(null)
-    const [errorMes,setErrorMes] = useState('')
+const FeedbackPage = () => {
 
-    
+    const [feeds, setFeeds] = useState<any | null>(null)
+    const [errorMes, setErrorMes] = useState('')
 
     useEffect(() => {
-        const feedbackData = async () => {
-            try{
+
+        (async () => {
+            setErrorMes(null)
+            try {
                 const { data } = await getFeedBack()
-                setFeeds(data)
+                setFeeds(data.feedback)
             }
-            catch{
+            catch {
                 setErrorMes('Error Mes')
             }
-        }
-        feedbackData()
-        
+        })()
+
     }, [])
 
 
-    if( !feeds){
+    if (!feeds) {
         return <>Loading...</>
     }
 
     return (
-        <Layout>
+        <>
             <h2>Feedback Page</h2>
             <FeedBackList setFeeds={setFeeds} feedsList={feeds} />
-            <FeedBackShare feedList={feeds} setFeeds={setFeeds} />
-        </Layout>
+            <FeedBackShare setFeeds={setFeeds} feedsList={feeds} />
+        </>
 
     )
 }
@@ -45,17 +44,16 @@ const FeedbackPage = (props) => {
 
 export default FeedbackPage
 
-// export async function getServerSideProps(){
+// export const getServerSideProps = async () => {
 
 //     const feedbackData = await getFeedBack()
-//     let {data} = feedbackData
-
+//     let { data } = feedbackData
 
 //     console.log(data);
 
 //     return {
-//         props:{
-//             feedback:'test'
+//         props: {
+//             feedback: 'test'
 //         }
 //     }
 
