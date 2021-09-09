@@ -3,10 +3,9 @@ import { FeedBackListProps } from "../../interfaces/feedback.model";
 import { delFeedBack } from "../../services/feedback";
 
 
-
 const FeedBackList: React.FC<FeedBackListProps> = ({ feedsList, setFeeds }) => {
 
-    // console.log(feedback);
+    console.log(feedsList);
 
     const deleteFeedBack: Function = (id: string) => {
         (async () => {

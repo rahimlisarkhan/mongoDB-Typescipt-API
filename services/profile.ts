@@ -3,11 +3,11 @@ import { ProfileType, ResponseType } from "../interfaces/request.model"
 import { Axios } from "../helper/axios-util"
 
 export const getProfileInfo = async () => {
-    const resp = await Axios.get<void, AxiosResponse<ResponseType<ProfileType>>>('/user')
+    const resp = await Axios.get<void, AxiosResponse<ResponseType<ProfileType>>>('/user/user-info')
     return resp
 }
 
 export const editProfileInfo = async (data: object) => {
-    const resp = await Axios.put<void, AxiosResponse<ResponseType<ProfileType>>>('/user', data)
+    const resp = await Axios.put<void, AxiosResponse<ResponseType<ProfileType>>>('/user/user-info', data)
     return resp
 }

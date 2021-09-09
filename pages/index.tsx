@@ -1,20 +1,28 @@
 import { useEffect, useRef, useState } from 'react';
-import { signIn } from 'next-auth/client'
+import { getSession, signIn, useSession } from 'next-auth/client'
 import { toast } from 'react-toastify';
 import { userStore } from '../providers/userProvider';
 import { register } from '../services/auth';
 import { editProfileInfo } from '../services/profile';
 
-
-const IndexPage = () => {
+const HomePage = () => {
 
   const { user, setEditText, auth, setAuth, text, setUser } = userStore()
   const [formData, setFormData] = useState<any | null>({})
   const [errMessage, setErrorMessage] = useState<any>(false)
   const [login, setLogin] = useState(false)
+  const [session, loading] = useSession()
   const inputRef = useRef<any | null>()
   const passwordRef = useRef<any | null>()
+  
 
+  // useEffect(() => {
+  //   (async () => {
+  //       let res = await getSession()
+  //       console.log(res);
+  //     }
+  //   )()
+  // })
 
   const handleSubmitRegister = async () => {
     setErrorMessage(false)
@@ -121,4 +129,4 @@ const IndexPage = () => {
   )
 }
 
-export default IndexPage
+export default HomePage

@@ -22,6 +22,18 @@ export const insertDocument = async (client: any, collection: string, document: 
   return result;
 }
 
+export const updateDocument = async (client: any, collection: string, findDocument: object, updateField: any) => {
+  const db = client.db();
+
+  if (updateField.password) {
+    updateField.password = await hashPassword(updateField.password)
+  }
+
+  const result = await db.collection(collection).updateOne(findDocument, { $set: updateField });
+
+  return result;
+}
+
 export const getAllDocuments = async (client: any, collection: string, sort: object) => {
   const db = client.db();
 
@@ -34,7 +46,7 @@ export const getAllDocuments = async (client: any, collection: string, sort: obj
   return documents;
 }
 
-export const uniqueEmailDataBase = async (client:any, collection: string, document: any) => {
+export const emailCheckDataBase = async (client: any, collection: string, document: any) => {
   const db = client.db();
   const userEmailCheck = db.collection(collection).findOne(document)
 

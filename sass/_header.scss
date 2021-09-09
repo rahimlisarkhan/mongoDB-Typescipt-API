@@ -6,7 +6,6 @@ header {
     justify-content: space-between;
     align-items: center;
     background-color: rgba(1, 20, 19, 0.788);
-
     .logo {
         font-size: 40px;
         text-transform: uppercase;
@@ -14,12 +13,23 @@ header {
         color: rgb(98, 236, 213);
         font-family: Arial, Helvetica, sans-serif;
     }
-
-    a {
-        color: rgb(98, 236, 213);
-        text-decoration: none;
-        text-transform: lowercase;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 22px;
+    .nav-content{
+        display: flex;
+        align-items: center;
+        ul{
+            display: flex;
+            li{
+                margin-right: 10px;
+            }
+        }
+        a,button {
+            color: rgb(98, 236, 213);
+            text-decoration: none;
+            text-transform: lowercase;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 22px;
+            border: none;
+            background-color: transparent;
+        }
     }
 }

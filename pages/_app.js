@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { UserProvider } from '../providers/userProvider';
-import Layout from '../components/Layout'
+import {Layout} from '../components/Layout/Layout'
 // import  {AppProps} from 'next/app'
 import '../sass/global.scss'
 import 'react-toastify/dist/ReactToastify.css';

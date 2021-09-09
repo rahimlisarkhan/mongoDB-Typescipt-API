@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { connectDatabase, insertDocument, uniqueEmailDataBase } from '../../../helper/db-util';
+import { connectDatabase, insertDocument, emailCheckDataBase } from '../../../helper/db-util';
 
 
 const requestAPI = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -29,7 +29,7 @@ const requestAPI = async (req: NextApiRequest, res: NextApiResponse) => {
 
     try {
 
-      let userEmailCheck = await uniqueEmailDataBase(client, 'users', { email })
+      let userEmailCheck = await emailCheckDataBase(client, 'users', { email })
 
       if (userEmailCheck) {
         res.status(422).json({ message: 'User exists already' })
